@@ -17,7 +17,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                 self.filename,
                 node.lineno,
                 node.col_offset,
-                node.end_col_offset,
                 self.source.splitlines()[node.lineno - 1]
             ))
 
@@ -30,7 +29,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                     self.filename,
                     arg.lineno,
                     arg.col_offset,
-                    node.end_col_offset,
                     self.source.splitlines()[arg.lineno - 1]
                 ))
 
@@ -45,7 +43,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                 self.filename,
                 node.lineno,
                 node.col_offset,
-                node.end_col_offset,
                 self.source.splitlines()[node.lineno - 1]
             ))
         elif isinstance(node.value, ast.Str):
@@ -55,7 +52,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                 self.filename,
                 node.lineno,
                 node.col_offset,
-                node.end_col_offset,
                 self.source.splitlines()[node.lineno - 1]
             ))
         elif isinstance(node.value, ast.BinOp):
@@ -65,7 +61,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                 self.filename,
                 node.lineno,
                 node.col_offset,
-                node.end_col_offset,
                 self.source.splitlines()[node.lineno - 1]
             ))
         else:
@@ -74,7 +69,6 @@ class ASTWalkerAndTypeChecker(ast.NodeVisitor):
                 self.filename,
                 node.lineno,
                 node.col_offset,
-                node.end_col_offset,
                 self.source.splitlines()[node.lineno - 1]
             ))
 

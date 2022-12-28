@@ -1,7 +1,7 @@
 from rich import print
 
 
-def create_error_message(error, filename, line_number, column_number, end_col, source_code):
+def create_error_message(error, filename, line_number, column_number, source_code):
     """
     Creates an error message for the user to see.
     This looks like this:

@@ -12,6 +12,7 @@ TESTS = [
     "testfiles/type_checker/typechecker_test_basic4",
     "testfiles/type_checker/typechecker_test_variable1",
     "testfiles/type_transformer/tt1",
+    "testfiles/compiler/compiler1",
 ]
 
 
