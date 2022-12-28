@@ -6,10 +6,10 @@ _Harpy: A new fast and compilable pythonic scripting language_
 
 - [📖 Table of Contents](#-table-of-contents)
 - [📚 Introduction](#-introduction)
-- [📚 Installation](#-installation)
-- [📚 Usage](#-usage)
-- [📚 Contributing](#-contributing)
-- [📚 License](#-license)
+- [🖥️ Installation](#-installation)
+- [🖊️ Usage](#-usage)
+- [🧑 Contributing](#-contributing)
+- [💼 License](#-license)
 
 ## 📚 Introduction
 
