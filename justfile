@@ -10,3 +10,6 @@ test2:
 
 test3:
     python3 -m harpy -i test_data/3.py -o .harpy/a.out -r
+
+test4:
+    python3 -m harpy -i test_data/4.py -o .harpy/a.out -r

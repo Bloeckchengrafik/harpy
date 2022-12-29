@@ -1,3 +1,5 @@
 .idea/
 .harpy/
 a.out
+/harpy/rt/platforms/cpp_std/cmake-build-debug/
+/harpy/rt/platforms/cpp_std/CMakeLists.txt
