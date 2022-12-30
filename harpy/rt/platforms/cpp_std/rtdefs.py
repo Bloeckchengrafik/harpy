@@ -7,3 +7,7 @@ def _(path: str):
 
 RTPrint = _("print")
 RTInput = _("input")
+RTAbs = _("abs")
+RTBin = _("bin")
+RTChr = _("chr")
+RTDivmod = _("divmod")

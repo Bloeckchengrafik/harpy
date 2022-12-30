@@ -46,7 +46,7 @@ class Compiler:
         self.function_sector.append(
             BaseCFunction("main", f"int main(int argc, char *argv[]) {LBRACE}{NEW_LINE}"
                                   f"{NEW_LINE.join(self.compile(indentation=1))} "
-                                  f"{RBRACE}"))
+                                  f"{NEW_LINE}{RBRACE}"))
 
         self.build_funcs()
         self.build_rt()

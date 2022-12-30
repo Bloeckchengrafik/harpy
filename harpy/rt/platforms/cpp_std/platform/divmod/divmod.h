@@ -1,0 +1,1 @@
+int *divmod(int a, int b);

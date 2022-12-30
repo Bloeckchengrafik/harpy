@@ -1,0 +1,47 @@
+# Builtin Functions or Methods
+
+- [ ] `__build_class__`
+- [ ] `__import__`
+- [x] `abs`
+- [ ] `aiter`
+- [ ] `all`
+- [ ] `anext`
+- [ ] `any`
+- [ ] `ascii`
+- [x] `bin`
+- [ ] `breakpoint`
+- [ ] `callable`
+- [x] `chr`
+- [ ] `compile`
+- [ ] `delattr`
+- [ ] `dir`
+- [ ] `divmod`
+- [x] `eval`
+- [ ] `exec`
+- [ ] `format`
+- [ ] `getattr`
+- [ ] `globals`
+- [ ] `hasattr`
+- [ ] `hash`
+- [ ] `hex`
+- [ ] `id`
+- [x] `input`
+- [ ] `isinstance`
+- [ ] `issubclass`
+- [ ] `iter`
+- [ ] `len`
+- [ ] `locals`
+- [ ] `max`
+- [ ] `min`
+- [ ] `next`
+- [ ] `oct`
+- [ ] `open`
+- [ ] `ord`
+- [ ] `pow`
+- [x] `print`
+- [ ] `repr`
+- [ ] `round`
+- [ ] `setattr`
+- [ ] `sorted`
+- [ ] `sum`
+- [ ] `vars`
