@@ -13,3 +13,6 @@ test3:
 
 test4:
     python3 -m harpy -i test_data/4.py -o .harpy/a.out -r
+
+test5:
+    python3 -m harpy -i test_data/5.py -o .harpy/a.out -r
