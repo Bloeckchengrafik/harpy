@@ -6,7 +6,8 @@
 # Print Function
 print("Hello World")
 
-print(abs(5))
+print(-5)
+print(abs(-5))
 
 # Input Function
 # name = input("What is your name? ")

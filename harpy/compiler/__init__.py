@@ -116,6 +116,8 @@ class Compiler:
             return self.compile_compare(value)
         elif isinstance(value, list):
             return self.compile_expressions(value, 1)
+        elif isinstance(value, ast.UnaryOp):
+            return self.compile_unary_op(value)
         else:
             raise TypeError(f"Unexpected AST node: ast.{value.__class__.__name__}")
 
@@ -133,6 +135,15 @@ class Compiler:
         compiled_args = []
         for arg in args:
             compiled_args.append(self.compile_fragment(arg))
+
+        if not value.func.__dict__.get("id"):
+            raise CompileError(
+                f"Function calls must be named",
+                "<input>",
+                value.lineno,
+                value.col_offset,
+                self.source
+            )
 
         # TODO: Check if the function is a named function
         # noinspection PyUnresolvedReferences
@@ -182,6 +193,9 @@ class Compiler:
     def compile_compare(self, value: ast.Compare):
         return f"{self.compile_fragment(value.left)} " \
                f"{self.optable[value.ops[0].__class__]} {self.compile_fragment(value.comparators[0])}"
+
+    def compile_unary_op(self, value: ast.UnaryOp):
+        return f"{self.optable[value.op.__class__]}{self.compile_fragment(value.operand)}"
 
 
 def run_compile(source, tree, platform="cpp_std") -> Compiler:

@@ -26,5 +26,8 @@ class Platform(ABC):
             ast.Lt: "<",
             ast.LtE: "<=",
             ast.Gt: ">",
-            ast.GtE: ">="
+            ast.GtE: ">=",
+            ast.USub: "-",
+            ast.UAdd: "+",
+            ast.Not: "!",
         }
