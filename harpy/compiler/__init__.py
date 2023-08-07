@@ -1,6 +1,5 @@
 import ast
 from datetime import datetime
-from rich.color import Color
 
 from harpy.compiler.CFunction import BaseCFunction
 from harpy.errors.CompileError import CompileError
@@ -56,6 +55,7 @@ class Compiler:
         body: list[ast.Expr] = self.tree.body
         return self.compile_expressions(body, indentation)
 
+    # noinspection PyMethodMayBeStatic
     def needs_semicolon(self, value):
         return not (value.endswith("{") or value.endswith("}") or value.endswith(";") or len(value.strip()) == 0)
 
@@ -116,14 +116,66 @@ class Compiler:
             return self.compile_compare(value)
         elif isinstance(value, list):
             return self.compile_expressions(value, 1)
+        elif isinstance(value, ast.FunctionDef):
+            return self.compile_function(value)
         elif isinstance(value, ast.UnaryOp):
             return self.compile_unary_op(value)
+        elif isinstance(value, ast.Return):
+            return self.compile_return(value)
+        elif isinstance(value, ast.arg):
+            return self.compile_arg(value)
         else:
             raise TypeError(f"Unexpected AST node: ast.{value.__class__.__name__}")
 
+    # noinspection PyMethodMayBeStatic
     def compile_constant(self, value: ast.Constant):
         return f"{value.value}"
 
+    def compile_return(self, value: ast.Return):
+        return f"return {self.compile_fragment(value.value)}"
+
+    def compile_arg(self, value: ast.arg):
+        return f"{self.get_resulting_type(value.annotation)} {value.arg}"
+
+    # noinspection PyMethodMayBeStatic
+    def get_resulting_type(self, value: ast.expr | None):
+        if value is None:
+            return "void"
+        elif isinstance(value, ast.Constant):
+            return self.get_resulting_type(value.value)
+        elif isinstance(value, ast.Str):
+            return "std::string"
+        elif isinstance(value, ast.Name):
+            return value.id
+        else:
+            raise TypeError(f"Unexpected AST node: ast.{value.__class__.__name__}")
+
+    def compile_function(self, value: ast.FunctionDef):
+        # Get the return type in c++
+        return_type = self.get_resulting_type(value.returns)
+
+        args = value.args.args
+        compiled_args = []
+        for arg in args:
+            compiled_args.append(self.compile_fragment(arg))
+
+        args_str = ", ".join(compiled_args)
+
+        fn = BaseCFunction(
+                value.name,
+                f"""
+                {return_type} {value.name}({args_str}) {LBRACE}{NEW_LINE}
+                    {NEW_LINE.join(self.compile_fragment(value.body))} 
+                {NEW_LINE}{RBRACE}
+                """
+            )
+        self.function_sector.append(fn)
+
+        self.namespace[value.name] = fn
+
+        return ""
+
+    # noinspection PyMethodMayBeStatic
     def compile_str(self, value: ast.Str):
         # Escape the string
         unescaped = value.s
@@ -151,6 +203,8 @@ class Compiler:
         # TODO: Shadowing
 
         if self.global_rt.get(function_id) is None:
+            if self.namespace.get(function_id) is not None:
+                return f"{function_id}({', '.join(compiled_args)})"
             raise NameError(f"Name '{function_id}' is not defined")
 
         rt = self.global_rt[function_id]

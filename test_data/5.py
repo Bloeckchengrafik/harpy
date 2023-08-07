@@ -1,5 +1,6 @@
-def hello():
+def hello(a: int) -> int:
     print("Hello, World")
+    return a
 
 
-hello()
+print(hello(1))
