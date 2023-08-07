@@ -13,13 +13,15 @@ _Harpy: A new fast and compilable pythonic scripting language_
 
 ## 📚 Introduction
 
-Harpy is a new fast and compilable pythonic scripting language. It is a work in progress and is not ready for production
-use.
+Harpy is a new fast and compilable way to write python code. It is a python to C++ compiler that can compile python code
+to a binary that can be executed without the need of a python interpreter.
 
 It is using the python ast module to parse the python code and then compile it to the AST. The AST is then cross
 compiled to C++ and finally compiled to a binary.
 This makes it possible to compile python code to a binary that can be executed without the need of a python interpreter.
 Also, this form of python works on embedded systems that do not have the capability to run a full python interpreter.
+
+### This project is still in development and is not ready for production use. It is not recommended to use it in
 
 ## 🖥️ Installation
 
