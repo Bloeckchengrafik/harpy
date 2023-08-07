@@ -202,9 +202,11 @@ class Compiler:
         function_id = value.func.id
         # TODO: Shadowing
 
+        # namespace takes precedence over global runtime
+        if self.namespace.get(function_id) is not None:
+            return f"{function_id}({', '.join(compiled_args)})"
+
         if self.global_rt.get(function_id) is None:
-            if self.namespace.get(function_id) is not None:
-                return f"{function_id}({', '.join(compiled_args)})"
             raise NameError(f"Name '{function_id}' is not defined")
 
         rt = self.global_rt[function_id]
